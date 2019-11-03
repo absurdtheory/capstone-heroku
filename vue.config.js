@@ -2,7 +2,7 @@ const BundleTracker = require("webpack-bundle-tracker");
 
 module.exports = {
     // On Linux you might want to set publicPath: "http://0.0.0.0:8080/"
-    publicPath: "http://127.0.0.1:8080/",
+    publicPath: "https://hello-grandpa.herokuapp.com/",
     outputDir: './dist/',
     transpileDependencies: ["vuetify"],
 
