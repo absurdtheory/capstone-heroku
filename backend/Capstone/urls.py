@@ -19,6 +19,7 @@ from django.urls import include, path, re_path
 # One-step activation workflow to skip email verification for now:
 from django_registration.backends.one_step.views import RegistrationView
 
+from django.views.generic import TemplateView
 from backend.core.views import IndexTemplateView
 from backend.users.forms import CustomUserForm
 from backend.iv.views import image_form_upload, video_form_upload
@@ -72,6 +73,8 @@ urlpatterns = [
     path("upload/image/", image_form_upload, name="image"),
 
     path("upload/video/", video_form_upload, name="video"),
+
+    re_path(r"^$", TemplateView.as_view(template_name='index.html')),
 
     # Catch all for other paths
     re_path(r"^.*$", IndexTemplateView.as_view(), name="entry-point")

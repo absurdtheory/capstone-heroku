@@ -20,7 +20,7 @@ MEDIA_URL="/media/"
 
 STATIC_URL="/static/"
 STATIC_ROOT = os.path.join(BASE_DIR, '../dist', 'static')
-STATIC_DIRS= []
+STATIC_DIRS= ['https://hello-grandpa.herokuapp.com/']
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
@@ -31,7 +31,7 @@ SECRET_KEY = '4-mf9!839!2*seox%ao3dgikeltyua1vvi6kptbr^(kuf5@ek0'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['hello-grandpa.herokuapp.com']
+ALLOWED_HOSTS = []
 
 CORS_ORIGIN_WHITELIST = (
     'https://localhost:8080',
@@ -98,7 +98,7 @@ ROOT_URLCONF = 'backend.Capstone.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['dist'],
+        'DIRS': [os.path.join(BASE_DIR,'../dist')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -112,7 +112,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'backend.Capstone.wsgi.application'
+WSGI_APPLICATION = 'backend.wsgi.application'
 
 
 # Database
@@ -206,9 +206,12 @@ REST_FRAMEWORK = {
 
 WEBPACK_LOADER = {
     'DEFAULT': {
-        'BUNDLE_DIR_NAME': '../dist/',
+        'BUNDLE_DIR_NAME': 'dist/',
         'STATS_FILE': os.path.join(BASE_DIR, '../webpack-stats.json'),
     }
 }
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_DIRS = [
+  os.path.join(BASE_DIR, 'dist/static'),
+]
